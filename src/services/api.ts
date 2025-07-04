@@ -158,6 +158,75 @@ class ApiService {
     return response.data;
   }
 
+
+    // Department endpoints
+  async getDepartments(page = 1, limit = 10, isActive?: boolean) {
+    const params = new URLSearchParams();
+    params.append('page', page.toString());
+    params.append('limit', limit.toString());
+    if (isActive !== undefined) params.append('is_active', isActive.toString());
+    
+    const response = await this.api.get(`/departments?${params}`);
+    return response.data;
+  }
+
+  async getDepartment(id: number) {
+    const response = await this.api.get(`/departments/${id}`);
+    return response.data;
+  }
+
+  async createDepartment(departmentData: any) {
+    const response = await this.api.post('/departments', departmentData);
+    return response.data;
+  }
+
+  async updateDepartment(id: number, departmentData: any) {
+    const response = await this.api.put(`/departments/${id}`, departmentData);
+    return response.data;
+  }
+
+  async deleteDepartment(id: number) {
+    const response = await this.api.delete(`/departments/${id}`);
+    return response.data;
+  }
+
+  // Position endpoints
+  async getPositions(page = 1, limit = 10, department?: string, isActive?: boolean) {
+    const params = new URLSearchParams();
+    params.append('page', page.toString());
+    params.append('limit', limit.toString());
+    if (department) params.append('department', department);
+    if (isActive !== undefined) params.append('is_active', isActive.toString());
+    
+    const response = await this.api.get(`/positions?${params}`);
+    return response.data;
+  }
+
+  async getPosition(id: number) {
+    const response = await this.api.get(`/positions/${id}`);
+    return response.data;
+  }
+
+  async createPosition(positionData: any) {
+    const response = await this.api.post('/positions', positionData);
+    return response.data;
+  }
+
+  async updatePosition(id: number, positionData: any) {
+    const response = await this.api.put(`/positions/${id}`, positionData);
+    return response.data;
+  }
+
+  async deletePosition(id: number) {
+    const response = await this.api.delete(`/positions/${id}`);
+    return response.data;
+  }
+
+  async getPositionsByDepartment(departmentId: number) {
+    const response = await this.api.get(`/positions/department/${departmentId}`);
+    return response.data;
+  }
+
   // Health check
   async healthCheck() {
     const response = await this.api.get('/health');

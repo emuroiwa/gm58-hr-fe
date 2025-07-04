@@ -53,21 +53,39 @@ export interface Employee {
   updated_at: string;
 }
 
+export interface Department {
+  id: number;
+  name: string;
+  description?: string;
+  manager_id?: number;
+  manager?: {
+    id: number;
+    employee_number: string;
+    first_name: string;
+    last_name: string;
+    email: string;
+    position?: {
+      title: string;
+    };
+  };
+  is_active: boolean;
+  created_at: string;
+  updated_at: string;
+}
+
 export interface Position {
   id: number;
   title: string;
   department_id: number;
   department?: Department;
+  description?: string;
   min_salary: number;
   max_salary: number;
   currency_id: number;
-}
-
-export interface Department {
-  id: number;
-  name: string;
-  description?: string;
+  currency?: Currency;
   is_active: boolean;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface Currency {
@@ -157,4 +175,21 @@ export interface RegisterRequest {
 export interface ChangePasswordRequest {
   current_password: string;
   new_password: string;
+}
+
+export interface DepartmentCreateRequest {
+  name: string;
+  description?: string;
+  manager_id?: number;
+  is_active?: boolean;
+}
+
+export interface PositionCreateRequest {
+  title: string;
+  department_id: number;
+  description?: string;
+  min_salary: number;
+  max_salary: number;
+  currency_id: number;
+  is_active?: boolean;
 }

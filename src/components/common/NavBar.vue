@@ -1,7 +1,7 @@
 <template>
   <nav class="fixed left-0 top-0 h-full w-64 bg-white shadow-lg border-r border-gray-200 z-10">
     <div class="p-6">
-      <h1 class="text-2xl font-bold text-primary-600">Payroll System</h1>
+      <h1 class="text-2xl font-bold text-blue-600">Payroll System</h1>
     </div>
     
     <div class="px-6">
@@ -12,7 +12,7 @@
           :to="item.to"
           class="flex items-center px-4 py-2 text-sm font-medium rounded-lg transition-colors"
           :class="isActiveRoute(item.to) 
-            ? 'bg-primary-100 text-primary-700' 
+            ? 'bg-blue-100 text-blue-700' 
             : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'"
         >
           <component :is="item.icon" class="w-5 h-5 mr-3" />
@@ -59,6 +59,8 @@ import {
   UsersIcon,
   CurrencyDollarIcon,
   BanknotesIcon,
+  BuildingOfficeIcon,
+  BriefcaseIcon,
   UserIcon,
   ArrowRightOnRectangleIcon,
 } from '@heroicons/vue/24/outline';
@@ -70,6 +72,8 @@ const authStore = useAuthStore();
 const navigationItems = computed(() => [
   { name: 'Dashboard', to: '/dashboard', icon: HomeIcon },
   { name: 'Employees', to: '/employees', icon: UsersIcon },
+  { name: 'Departments', to: '/departments', icon: BuildingOfficeIcon },
+  { name: 'Positions', to: '/positions', icon: BriefcaseIcon },
   { name: 'Payroll', to: '/payroll', icon: BanknotesIcon },
   { name: 'Currencies', to: '/currencies', icon: CurrencyDollarIcon },
 ]);
